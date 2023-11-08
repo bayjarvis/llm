@@ -16,7 +16,7 @@ if __name__ == '__main__':
     
     inp_str = generate_prompt(
         {
-            "instruction": "i have a question about cancelling order",
+            "instruction": "i have a question about placing an order",
         },
     )
     

@@ -2,8 +2,8 @@ from datasets import load_dataset, Dataset
 from peft import LoraConfig, prepare_model_for_kbit_training, get_peft_model
 from transformers import AutoModelForCausalLM, AutoTokenizer, GPTQConfig, TrainingArguments
 from trl import SFTTrainer
-from llm.zephyr.finetune_gptq.config import Config 
-from llm.zephyr.finetune_gptq.utils import to_chat_text
+from zephyr.finetune_gptq.config import Config 
+from zephyr.finetune_gptq.prompt_utils import to_chat_text
 
 class ZephyrTrainer:
 
@@ -37,17 +37,13 @@ class ZephyrTrainer:
 
         data = load_dataset(self.config.DATASET_ID, split="train")
 
-        print("\n====================================================================\n")
-        print("\t\t\tDOWNLOADED DATASET")
-        print("\n====================================================================\n")
+        print("DOWNLOADED DATASET", "*"*20)
 
         df = data.to_pandas()
         df[self.config.DATASET_TEXT_FIELD] = df[[self.config.INSTRUCTION_FIELD, self.config.TARGET_FIELD]].apply(lambda x: self.process_data_sample(x), axis=1)
 
-        print("\n====================================================================\n")
-        print("\t\t\tPROCESSED DATASET")
+        print("PROCESSED DATASET", "*"*20)
         print(df.iloc[0])
-        print("\n====================================================================\n")
 
         processed_data = Dataset.from_pandas(df[[self.config.DATASET_TEXT_FIELD]])
         return processed_data
@@ -74,10 +70,8 @@ class ZephyrTrainer:
                                                         device_map=self.config.DEVICE_MAP
                                                     )
 
-        print("\n====================================================================\n")
-        print("DOWNLOADED MODEL")
+        print("DOWNLOADED MODEL", "*"*20)
         print(model)
-        print("\n====================================================================\n")
 
         model.config.use_cache=self.config.USE_CACHE
         model.config.pretraining_tp=1
@@ -85,7 +79,7 @@ class ZephyrTrainer:
         model = prepare_model_for_kbit_training(model)
 
         print("\n====================================================================\n")
-        print("MODEL CONFIG UPDATED")
+        print("MODEL CONFIG UPDATED", "*" * 20)
         print("\n====================================================================\n")
 
         peft_config = LoraConfig(

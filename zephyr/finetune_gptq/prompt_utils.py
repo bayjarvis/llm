@@ -10,7 +10,7 @@ def to_chat_text(example, instruction_field:str, target_field:str):
     processed_example: Data sample post processing
     '''
 
-    processed_example = "<|system|>\n You are a support chatbot who helps with user queries chatbot who always responds in the style of a professional.</s>\n<|user|>\n" + example[instruction] + "</s>\n<|assistant|>\n" + example[target]
+    processed_example = "<|system|>\n You are a support chatbot who helps with user queries chatbot who always responds in the style of a professional.</s>\n<|user|>\n" + example[instruction_field] + "</s>\n<|assistant|>\n" + example[target_field]
     return processed_example
 
  

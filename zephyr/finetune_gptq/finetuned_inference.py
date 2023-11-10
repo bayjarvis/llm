@@ -3,7 +3,7 @@ from transformers import GenerationConfig
 from transformers import AutoTokenizer
 import torch
 import time
-from llm.zephyr.finetune_gptq.config import Config
+from zephyr.finetune_gptq.config import Config
 
 def generate_prompt(example):
 

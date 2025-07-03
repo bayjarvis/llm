@@ -1,0 +1,42 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlx-grpo"
+version = "0.1.0"
+authors = [
+  { name="Your Name", email="you@example.com" },
+]
+description = "An implementation of Group Relative Policy Optimization (GRPO) in Apple's MLX framework."
+readme = "README.md"
+license = { file="LICENSE" } # Assumes an MIT license file exists
+requires-python = ">=3.9"
+keywords = ["mlx", "reinforcement learning", "ppo", "grpo", "llm", "apple silicon"]
+
+# Core dependencies required for the package to run
+dependencies = [
+    "mlx",
+    "mlx-lm", # For MLX language model utilities
+    "numpy",
+    "tqdm",
+    "transformers", # For the tokenizer
+]
+
+[project.urls]
+Homepage = "https://github.com/bayjarvis/llm/mlx-grpo"
+"Bug Tracker" = "https://github.com/bayjarvis/llm/mlx-grpo/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff", # A popular linter and formatter
+    "build", # For building the package
+]
+
+[project.scripts]
+mlx-grpo-train = "mlx_grpo.run:main"
+mlx-grpo-chat = "mlx_grpo.chat:main"
+

@@ -15,3 +15,7 @@ This repository contains various LLM training implementations using different op
 ### Supervised Fine-tuning
 
 * **[Fine-tuning Zephyr 7B GPTQ with 4-Bit Quantization](https://github.com/bayjarvis/llm/tree/main/zephyr/finetune_gptq)** - Custom data fine-tuning with 4-bit quantization for efficient inference and deployment.
+
+### Architectural Implementations
+
+* **[Mixture of Experts (MoE) in PyTorch](https.github.com/bayjarvis/llm/tree/main/moe)** - A from-scratch implementation of a sparse Mixture of Experts layer in PyTorch, demonstrating a key technique for building large, efficient language models.
